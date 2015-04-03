@@ -16,25 +16,14 @@ class Vaisseaux(object):
     '''
 
 
-    def __init__(self,grille,canvas,logo,root):
+    def __init__(self,grille,canvas,logo):
         self.grille = grille
         self.canvas = canvas
         self.logo= logo
-        self.widget = Label(canvas, text='Joueur 1', fg='white', bg='blue')
-        self.widget.pack(side = LEFT ,anchor = tk.NW)
-
-        self.widget1 = Label(canvas, text='Joueur 2', fg='white', bg='blue')
-        self.widget1.pack(side = RIGHT ,anchor = tk.NE)
-        self.B1 = Button(self.canvas, text ='     Quitter     ', command = root.destroy)
-        self.B1.pack(side = tk.BOTTOM,pady=80)
         self.B = Button(self.canvas, text ="Commencer",command = self.placer_vaisseaux1)
         self.B.pack(side = tk.BOTTOM,pady=80)
-
-
-
-
-        
-    
+  
+  
     def placer_vaisseaux1(self):
         showinfo("Joueur 1", "Choisissez la position de vos 5 vaisseaux")
         self.grille.canvas.bind("<Button-1>", self.jouer1)
@@ -61,4 +50,4 @@ class Vaisseaux(object):
             self.grille._dessiner_grille()
             showinfo("Joueur 1", "Au joueur 1 de jouer !!")
             self.grille.permuterGrilles(self.grille.pos,self.grille.pos2)
-            Jouer(self.grille,self.logo,self.B)
+            Jouer(self.grille,self.B)

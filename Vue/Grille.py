@@ -14,7 +14,7 @@ class Grille(object):
         self.pos = [[Case] * width for _ in range(height)]
         self.pos2 = [[Case] * width for _ in range(height)]
         self.initialiser()
-        self._dessiner_grille()
+        #self._dessiner_grille()
 
         
     def _dessiner_grille(self):

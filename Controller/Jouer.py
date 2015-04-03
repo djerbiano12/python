@@ -4,11 +4,10 @@ from tkinter import NORMAL
 
 class Jouer(object):
  
-    def __init__(self, grille,logo,bouton):
+    def __init__(self, grille,bouton):
         self.grille = grille
         self.bouton = bouton
         self.joueur1()   
-        self.logo = logo
         self.vaisseauxTrouve1 = 0
         self.vaisseauxTrouve2 = 0
 

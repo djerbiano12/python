@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter import *
 from tkinter import PhotoImage
 from tkinter.constants import BOTTOM, LEFT
+from Vue.DessinerJeux import DessinerJeux
 
 
 
@@ -17,7 +18,8 @@ if __name__ == '__main__':
     
 logo = PhotoImage(file="C:/Users/amine/My Documents/LiClipse Workspace/Projet/logo.PNG")
 G = Grille(10,10,canvas,canvas1,logo)
-v = Vaisseaux(G,canvas2,logo,root)
+v = Vaisseaux(G,canvas2,logo)
+d = DessinerJeux(G,v,root)
 
 
 canvas.pack(side = tk.LEFT)
