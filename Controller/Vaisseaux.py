@@ -16,7 +16,7 @@ class Vaisseaux(object):
     '''
 
 
-    def __init__(self,grille,canvas,logo):
+    def __init__(self,grille,canvas,logo,root):
         self.grille = grille
         self.canvas = canvas
         self.logo= logo
@@ -25,8 +25,11 @@ class Vaisseaux(object):
 
         self.widget1 = Label(canvas, text='Joueur 2', fg='white', bg='blue')
         self.widget1.pack(side = RIGHT ,anchor = tk.NE)
+        self.B1 = Button(self.canvas, text ='     Quitter     ', command = root.destroy)
+        self.B1.pack(side = tk.BOTTOM,pady=80)
         self.B = Button(self.canvas, text ="Commencer",command = self.placer_vaisseaux1)
-        self.B.pack(side = tk.BOTTOM,pady=170)
+        self.B.pack(side = tk.BOTTOM,pady=80)
+
 
 
 

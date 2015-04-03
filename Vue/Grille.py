@@ -1,5 +1,4 @@
 from Model.Case import Case
-import tkinter as tk
 
 
 

@@ -1,5 +1,5 @@
 from Vue.Grille import Grille
-from Model.Vaisseaux import Vaisseaux
+from Controller.Vaisseaux import Vaisseaux
 import tkinter as tk
 from tkinter import *
 from tkinter import PhotoImage
@@ -17,7 +17,7 @@ if __name__ == '__main__':
     
 logo = PhotoImage(file="C:/Users/amine/My Documents/LiClipse Workspace/Projet/logo.PNG")
 G = Grille(10,10,canvas,canvas1,logo)
-v = Vaisseaux(G,canvas2,logo)
+v = Vaisseaux(G,canvas2,logo,root)
 
 
 canvas.pack(side = tk.LEFT)
