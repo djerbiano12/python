@@ -1,8 +1,11 @@
 from tkinter import DISABLED
 import tkinter as tk
+from tkinter import *
 from Controller.Jouer import Jouer
 from tkinter.messagebox import showinfo
 from tkinter import Button
+from tkinter.constants import BOTTOM, LEFT
+
 
 
 
@@ -17,8 +20,15 @@ class Vaisseaux(object):
         self.grille = grille
         self.canvas = canvas
         self.logo= logo
+        self.widget = Label(canvas, text='Joueur 1', fg='white', bg='blue')
+        self.widget.pack(side = LEFT ,anchor = tk.NW)
+
+        self.widget1 = Label(canvas, text='Joueur 2', fg='white', bg='blue')
+        self.widget1.pack(side = RIGHT ,anchor = tk.NE)
         self.B = Button(self.canvas, text ="Commencer",command = self.placer_vaisseaux1)
-        self.B.pack(side = tk.BOTTOM)
+        self.B.pack(side = tk.BOTTOM,pady=170)
+
+
 
         
     

@@ -1,4 +1,5 @@
 from Model.Case import Case
+import tkinter as tk
 
 
 
@@ -41,7 +42,6 @@ class Grille(object):
                 else:  
                     self.canvas.create_rectangle(pas*i, pas*j, pas*(i+1), pas*(j+1), fill=self.pos[i][j].getcouleur(),outline = 'white')
                     self.pos[i][j] = Case(pas*i,pas*j,self.pos[i][j].getcouleur(),0)
-                    
   
 
     def _dessiner_grille2(self):
