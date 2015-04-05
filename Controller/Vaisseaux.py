@@ -22,6 +22,7 @@ class Vaisseaux(object):
         self.logo= logo
         self.B = Button(self.canvas, text ="Commencer",command = self.placer_vaisseaux1)
         self.B.pack(side = tk.BOTTOM,pady=80)
+ 
   
   
     def placer_vaisseaux1(self):
