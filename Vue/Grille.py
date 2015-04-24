@@ -58,15 +58,16 @@ class Grille(object):
                     self.canvas1.create_rectangle(pas*i, pas*j, pas*(i+1), pas*(j+1), fill=self.pos2[i][j].getcouleur(),outline = 'white')
                     self.pos2[i][j] = Case(pas*i,pas*j,self.pos2[i][j].getcouleur(),0)
         
-    def get_pos(self,x,y):
-        if(x == self.height or y == self.width):
-            return Case(x,y,"black",4)
-        return self.pos[x][y]
-    
-    def get_pos2(self,x,y):
-        if(x == self.height or y == self.width):
-            return Case(x,y,"black",4)
-        return self.pos2[x][y]
+    def getCasePos(self,x,y,z):
+        if(z == 1):
+            if(x == self.height or y == self.width):
+                return Case(x,y,"black",4)
+            return self.pos[x][y]
+        else:
+            if(x == self.height or y == self.width):
+                return Case(x,y,"black",4)
+            return self.pos2[x][y]
+
     
     def initialiser(self): 
         for i in range(self.width):
