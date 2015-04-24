@@ -1,9 +1,7 @@
 from Vue.Grille import Grille
 from Controller.Vaisseaux import Vaisseaux
 import tkinter as tk
-from tkinter import *
 from tkinter import PhotoImage
-from tkinter.constants import BOTTOM, LEFT
 from Vue.DessinerJeux import DessinerJeux
 
 

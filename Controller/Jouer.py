@@ -1,28 +1,33 @@
 from tkinter.messagebox import showinfo
-from tkinter import NORMAL
 from Model.Scores import Scores
+from tkinter import *
+
 
 
 
 
 class Jouer(object):
-
- 
+    afficherScore = Scores(0,0)
     def __init__(self, grille,bouton):
         self.grille = grille
         self.bouton = bouton
         self.joueur1()   
         self.vaisseauxTrouve1 = 0
         self.vaisseauxTrouve2 = 0
+        self.score1 = 0
+        self.score2 = 0
 
+        
+        
     
     def jouer1(self,event): 
         bool = "true"
         if(self.grille.getCasePos(event.x//40,event.y//40,1).getsituation()==1):
             self.grille.getCasePos(event.x//40,event.y//40,1).setsituation(2)
             self.vaisseauxTrouve1 = self.vaisseauxTrouve1 + 1
-            Scores.ScoreJ1 = Scores.ScoreJ1 + 50
-            print(Scores.ScoreJ1)
+            self.score1 = self.score1 + 50
+            Jouer.afficherScore.ScoreJ1.set(self.score1)
+            
 
         elif(self.grille.getCasePos(event.x//40,event.y//40,1).getsituation()==2):
             self.joueur1()
@@ -47,7 +52,8 @@ class Jouer(object):
         if(self.grille.getCasePos(event.x//40,event.y//40,2).getsituation()==1):
             self.grille.getCasePos(event.x//40,event.y//40,2).setsituation(2)
             self.vaisseauxTrouve2 = self.vaisseauxTrouve2 + 1
-            Scores.ScoreJ2 = Scores.ScoreJ2 + 50
+            self.score2 = self.score2 + 50
+            Jouer.afficherScore.ScoreJ2.set(self.score2)
 
 
 
