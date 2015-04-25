@@ -22,7 +22,6 @@ class Vaisseaux(object):
         self.B.pack(side = tk.BOTTOM,pady=80)
         self.posX = 0
         self.posY = 0
-        self.deborder = False
  
   
   
@@ -83,26 +82,31 @@ class Vaisseaux(object):
             self.grille.getCasePos(pos1-1,pos2,num).setcouleur("green")
             self.grille.getCasePos(pos1,pos2+1,num).setcouleur("green")
             self.grille.getCasePos(pos1,pos2-1,num).setcouleur("green")
-        elif(pos1 > self.posX and self.grille.nbVaisseauxPlaces(tableau) < 5 or (self.deborder == True and self.posX != pos1)):
+        elif(pos1 > self.posX and self.grille.nbVaisseauxPlaces(tableau) < 5 ):
             if(pos1 == self.grille.width - 1):
-                pos1 = -1
-                self.deborder = True
-                self.grille.getCasePos(pos1+1,pos2,num).setcouleur("green")
+                pos1 = pos1 - self.grille.nbVaisseauxPlaces(tableau)
+                self.grille.getCasePos(pos1,pos2,num).setcouleur("green")
             else: 
-                self.deborder = False    
                 self.grille.getCasePos(pos1+1,pos2,num).setcouleur("green")
         elif(pos1 < self.posX and self.grille.nbVaisseauxPlaces(tableau) < 5):
-            self.grille.getCasePos(pos1-1,pos2,num).setcouleur("green")
-        elif(pos2 > self.posY and self.grille.nbVaisseauxPlaces(tableau) < 5  or self.deborder == True):
-            if(pos2 == self.grille.height - 1):
-                pos2 = -1
-                self.grille.getCasePos(pos1,pos2+1,num).setcouleur("green")
-                self.deborder = True
+            if(pos1 == 0):
+                pos1 = pos1 + self.grille.nbVaisseauxPlaces(tableau) 
+                self.grille.getCasePos(pos1,pos2,num).setcouleur("green")      
             else:
-                self.deborder = False
+                self.grille.getCasePos(pos1-1,pos2,num).setcouleur("green")
+                
+        elif(pos2 > self.posY and self.grille.nbVaisseauxPlaces(tableau) < 5 ):
+            if(pos2 == self.grille.height - 1):
+                pos2 = pos2 - self.grille.nbVaisseauxPlaces(tableau)
+                self.grille.getCasePos(pos1,pos2,num).setcouleur("green")
+            else:
                 self.grille.getCasePos(pos1,pos2+1,num).setcouleur("green")
-        elif(pos2 < self.posY and self.grille.nbVaisseauxPlaces(tableau) < 5):
-            self.grille.getCasePos(pos1,pos2-1,num).setcouleur("green")
+        elif(pos2 < self.posY and self.grille.nbVaisseauxPlaces(tableau) < 5 ):
+            if(pos2 == 0):
+                pos2 = pos2 + self.grille.nbVaisseauxPlaces(tableau) 
+                self.grille.getCasePos(pos1,pos2,num).setcouleur("green")      
+            else:
+                self.grille.getCasePos(pos1,pos2-1,num).setcouleur("green")
             
         
     def effacerGreen(self,num):
