@@ -48,7 +48,7 @@ class Jouer(object):
 
         
     def jouer2(self,event): 
-        bool = "true"
+        bool = True
         if(self.grille.getCasePos(event.x//40,event.y//40,2).getsituation()==1):
             self.grille.getCasePos(event.x//40,event.y//40,2).setsituation(2)
             self.vaisseauxTrouve2 = self.vaisseauxTrouve2 + 1
@@ -62,14 +62,14 @@ class Jouer(object):
 
         elif(self.grille.getCasePos(event.x//40,event.y//40,2).getcouleur() == "red"):
             self.joueur2()
-            bool = "false"
+            bool = False
              
         else:
             self.grille.getCasePos(event.x//40,event.y//40,2).setcouleur("red")
             self.joueur1()
         self.grille._dessiner_grille()
         
-        if(self.grille.getCasePos(event.x//40,event.y//40,2).getsituation()==0 and bool == "true"):            
+        if(self.grille.getCasePos(event.x//40,event.y//40,2).getsituation()==0 and bool == True):            
             showinfo("Joueur 1", "Au joueur 1 de jouer !!")
         if(self.vaisseauxTrouve2 == 5):
             self.fin_jeux("Joueur 2")
@@ -89,5 +89,6 @@ class Jouer(object):
         self.vaisseauxTrouve1 = 0
         self.vaisseauxTrouve2 = 0
         self.bouton.config(state=NORMAL) 
+
      
         
