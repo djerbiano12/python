@@ -42,7 +42,7 @@ class Jouer(object):
         self.grille._dessiner_grille()
         
         if(self.grille.getCasePos(event.x//40,event.y//40,1).getsituation()==0 and bool == "true" ):            
-            showinfo("Joueur 2", "Au joueur 2 de jouer !!")
+            showinfo("Au joueur 2 de jouer", "Essayez de trouvez le vaisseau du joueur 1  !!")
         if(self.vaisseauxTrouve1 == 5):
             self.fin_jeux("Joueur 1")
 

@@ -1,8 +1,12 @@
 import tkinter as tk
+from tkinter import messagebox
 from Controller.Jouer import Jouer
 from tkinter.messagebox import showinfo
 from tkinter import Button
 from tkinter import DISABLED
+import time
+import random
+
 
 
 
@@ -18,7 +22,7 @@ class Vaisseaux(object):
         self.grille = grille
         self.canvas = canvas
         self.logo= logo
-        self.B = Button(self.canvas, text ="Commencer",command = self.placer_vaisseaux1)
+        self.B = Button(self.canvas, text ="Commencer",command = self.ouvrirDialogue1)
         self.B.pack(side = tk.BOTTOM,pady=80)
         self.posX = 0
         self.posY = 0
@@ -27,7 +31,6 @@ class Vaisseaux(object):
   
     # Cette fonction est appelee pour placer les vaisseaux au debut du jeux
     def placer_vaisseaux1(self):
-        showinfo("Joueur 1", "Choisissez la position de vos 5 vaisseaux")
         self.grille.canvas.bind("<Button-1>", self.jouer1)
         self.B.config(state=DISABLED)
         
@@ -45,10 +48,10 @@ class Vaisseaux(object):
                 
             
         if(self.grille.nbVaisseauxPlaces(self.grille.pos) == 5):
-            showinfo("Joueur 2", "Choisissez la position de vos 5 vaisseaux")
             self.posX = 0
             self.posY = 0
-            self.placer_vaisseaux2()
+            self.ouvrirDialogue2()
+            #self.placer_vaisseaux2()
        
     # Cette fonction permet au joueur 2 de palcer ses vaisseaux    
     def placer_vaisseaux2(self):
@@ -68,7 +71,7 @@ class Vaisseaux(object):
         if(self.grille.nbVaisseauxPlaces(self.grille.pos2) == 5):
             self.grille.commencer()
             self.grille._dessiner_grille()
-            showinfo("Joueur 1", "Au joueur 1 de jouer !!")
+            showinfo("Au joueur 1 de jouer", "Essayez de trouvez le vaisseau du joueur 2  !!")
             self.grille.permuterGrilles(self.grille.pos,self.grille.pos2)
             Jouer(self.grille,self.B)
     
@@ -115,11 +118,38 @@ class Vaisseaux(object):
                 if(self.grille.getCasePos(i,j,num).getcouleur() == "green"):
                     self.grille.getCasePos(i,j,num).setcouleur("black")
         self.grille._dessiner_grille()
+      
         
+    def placerVaisseauAleatoire(self):
+        r = random.randint(1,10)   
+        for i in range(1,6):
+            self.grille.getCasePos(r,i,1).setsituation(2)
+            self.grille._dessiner_grille() 
+        self.ouvrirDialogue2()   
         
-        
-        
-        
-        
-        
-        
+    def placerVaisseauAleatoire2(self):
+        r = random.randint(1,10)   
+        for i in range(1,6):
+            self.grille.getCasePos(r,i,2).setsituation(2)
+        self.grille._dessiner_grille() 
+        showinfo("Joueur 1", "Au joueur 1 de jouer !!")
+        self.grille.commencer()
+        self.grille._dessiner_grille()
+        self.grille.permuterGrilles(self.grille.pos,self.grille.pos2)
+        Jouer(self.grille,self.B)
+            
+    def ouvrirDialogue1(self):
+        if messagebox.askquestion("Joueur 1", "Voulez vous placez les vaisseausx aléatoirement?")=="no":
+            showinfo("Joueur 1", "Placez votre vaisseau en cliquant sur 5 cases de votre grille !!")
+            self.placer_vaisseaux1()
+        else:
+            self.B.config(state=DISABLED)
+            self.placerVaisseauAleatoire()
+           
+    def ouvrirDialogue2(self):
+        if messagebox.askquestion("Joueur 2", "Voulez vous placez les vaisseausx aléatoirement?")=="no":
+            showinfo("Joueur 2", "Placez votre vaisseau en cliquant sur 5 cases de votre grille !!")
+            self.placer_vaisseaux2()
+        else:
+            self.placerVaisseauAleatoire2()
+                
